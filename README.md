@@ -1,7 +1,9 @@
 # line-web
 
-## run
-`deno task dev`
+## build
 
-## secret
-`openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj '/CN=localhost'`
+`npm run build`
+
+## deploy
+
+Build output directory: `www`

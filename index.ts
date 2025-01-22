@@ -1,5 +1,4 @@
-import { Hono } from "@hono/hono";
-import { serveStatic } from "@hono/hono/deno";
+import { Hono } from "hono";
 
 const app = new Hono();
 
@@ -54,25 +53,8 @@ app.all("/_proxy/CHROME_GW/*", async (c) => {
   });
 });
 
-app.use(
-  "*",
-  serveStatic({
-    root: "./www",
-  }),
-);
-
 app.notFound((c) =>
   c.redirect("/?fallbackBy=" + encodeURIComponent(c.req.path))
 );
 
-const options = Deno.args[0] === "localhost"
-  ? {
-    cert: await Deno.readTextFile("./secret/cert.pem"),
-    key: await Deno.readTextFile("./secret/key.pem"),
-  }
-  : {};
-
-Deno.serve({
-  port: 443,
-  ...options,
-}, app.fetch);
+export default app;

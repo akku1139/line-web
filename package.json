@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "build": "esbuild index.ts --bundle --format=esm --minify --outfile=www/_worker.js"
+  },
+  "dependencies": {
+    "hono": "^4.6.17"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.2"
+  }
+}
